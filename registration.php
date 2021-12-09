@@ -1,7 +1,15 @@
 <?php
 session_start();
 
-$conn = mysqli_connect($servername, $username, $password);
+header('location: signup.php');
+
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+
+$conn = mysqli_connect($servername, $username, $password, 'startournament');
+
+mysqli_select_db($conn,'signup');
 
 $username = $_POST['username'];
 $email = $_POST['email'];
@@ -20,4 +28,5 @@ if($num == 1){
 }
 
 mysqli_close($conn);
+
 ?>

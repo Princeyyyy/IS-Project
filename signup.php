@@ -32,7 +32,7 @@
                     <img src="images/tournament.png" alt="IMG">
                 </div>
 
-                <form class="login100-form" action="signup.php" method="post">
+                <form class="login100-form" action="register.php" method="post">
                     <span class="login100-form-title">
 						Member Sign Up
 					</span>
