@@ -32,7 +32,7 @@
                     <img src="images/tournament.png" alt="IMG">
                 </div>
 
-                <form class="login100-form" action="register.php" method="post">
+                <form class="login100-form" action="registration.php" method="post">
                     <span class="login100-form-title">
 						Member Sign Up
 					</span>
@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="text-center p-t-136">
-                        <a class="txt2" href="login.html">
+                        <a class="txt2" href="login.php">
 							Log In
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
