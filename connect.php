@@ -1,15 +1,16 @@
 <?php
-$host = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "StarTournament";
+session_start();
 
-    $conn = new mysqli($host,$dbusername,$dbpassword,$dbname);
+$servername = 'localhost';
+$username = 'root';
+$password = '';
 
-if (!$conn) {
-    
-    die("Connection Failed: " .mysqli_connect_error());
-}else{
-    echo("Connection Successful!");
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, 'startournament');
+
+// Check connection
+if(!$conn){
+    die("Database connection failed! " . mysqli_connect_error());
 }
+echo "Conected successfully!";
 ?>
