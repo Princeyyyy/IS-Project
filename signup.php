@@ -32,12 +32,12 @@
                     <img src="images/tournament.png" alt="IMG">
                 </div>
 
-                <form class="login100-form" action="registration.php" method="post">
+                <form class="login100-form" action="registration.php" method="post" enctype="multipart/form-data">
                     <span class="login100-form-title">
 						Member Sign Up
 					</span>
 
-                    <div class="wrap-input100">
+                    <div class="wrap-input100 validate-input" data-validate="Username required">
                         <input class="input100" type="text" placeholder="Username" name="username">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
+                        <button class="login100-form-btn" name="signup">
 							Sign Up
 						</button>
                     </div>
