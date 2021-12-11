@@ -32,21 +32,21 @@
                     <img src="images/tournament.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form" action="log.php" method="post" enctype="multipart/form-data">
+                <form class="login100-form validate-form" action="loginLogic.php" method="POST">
                     <span class="login100-form-title">
 						Member Login
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="ema" placeholder="Email">
+                    <div class="wrap-input100 validate-input" data-validate="Username required">
+                        <input class="input100" type="text" name="logusername" placeholder="Username">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<i class="fa fa-user" aria-hidden="true"></i>
 						</span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="pass" placeholder="Password">
+                        <input class="input100" type="password" name="logpassword" placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -64,13 +64,20 @@
 							Forgot
 						</span>
                         <a class="txt2" href="#">
-							Username / Password?
+							Email / Password?
 						</a>
                     </div>
 
                     <div class="text-center p-t-136">
                         <a class="txt2" href="signup.php">
 							Create your Account
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+                    </div>
+
+                    <div class="text-center">
+                        <a class="txt2" href="index.php">
+							Back
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
                     </div>

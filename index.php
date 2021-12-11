@@ -32,7 +32,7 @@
 
             <!-- Image Logo -->
             <div class="logo">
-                <a href="index.html"><img src="images/resize.png" alt="Alternative"> Star<span>Tournament</span></a>
+                <a href="index.php"><img src="images/resize.png" alt="Alternative"> Star<span>Tournament</span></a>
             </div>
 
             <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
@@ -76,7 +76,7 @@
                 <div class="col-lg-6">
                     <div class="text-container">
                         <h1 class="h1-large">StarTournament is a free webapp designed to help people register for tournaments</h1>
-                        <a class="btn-solid-lg page-scroll" href="#details">Discover</a>
+                        <a class="btn-solid-lg page-scroll" href="home.php">View Tournaments</a>
                     </div>
                     <!-- end of text-container -->
                 </div>
