@@ -22,8 +22,11 @@ if($num == 1)
 }
 else
 {
-    echo "<script>alert('Log in failed!!');</script>";
-    // header("Location: login.php");
+    echo "
+        <script type=\"text/javascript\">".
+        "alert('Invalid Username or Password! Try again');".
+        "location.href = 'login.php'".
+        "</script>";
 }
 
 
