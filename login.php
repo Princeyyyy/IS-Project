@@ -46,11 +46,15 @@
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="logpassword" placeholder="Password">
+                        <input class="input100" type="password" name="logpassword" id="lpasssword" placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
+                    </div>
+
+                    <div>
+                        <input id="checkbox" type="checkbox" onclick="myFunction()"> Show Password
                     </div>
 
                     <div class="container-login100-form-btn">
@@ -105,6 +109,7 @@
     </script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
+    <script src="js/log.js"></script>
 
 </body>
 
