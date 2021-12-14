@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+include "db.php";
+include "signupLogic.php";
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,16 +39,16 @@
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
-                    <img src="images/tournament.png" alt="IMG">
+                    <img src="images/tournament.png" alt="img">
                 </div>
 
-                <form class="login100-form" action="register.php" method="post">
+                <form class="login100-form validate-form" method="POST" enctype="multipart/form-data">
                     <span class="login100-form-title">
-						Member Sign Up
+						Member SIgn Up
 					</span>
 
-                    <div class="wrap-input100">
-                        <input class="input100" type="text" placeholder="Username" name="username">
+                    <div class="wrap-input100 validate-input" data-validate="Username required">
+                        <input class="input100" type="text" name="username" placeholder="Username">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -49,27 +59,38 @@
                         <input class="input100" type="text" name="email" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
+							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" placeholder="Password">
+                        <input class="input100" type="password" name="password" id="spassword" placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
                     </div>
 
+                    <div>
+                        <input id="checkbox" type="checkbox" onclick="myFunction()"> Show Password
+                    </div>
+
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
+                        <button class="login100-form-btn" name="signup">
 							Sign Up
 						</button>
                     </div>
 
                     <div class="text-center p-t-136">
-                        <a class="txt2" href="login.html">
-							Log In
+                        <a class="txt2" href="login.php">
+							Already have an account! Log In
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+                    </div>
+
+                    <div class="text-center">
+                        <a class="txt2" href="index.php">
+							Back
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
                     </div>
@@ -97,6 +118,7 @@
     </script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
+    <script src="js/sign.js"></script>
 
 </body>
 

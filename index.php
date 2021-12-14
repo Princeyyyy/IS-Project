@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+error_reporting(0);
+$name = $_SESSION['name'];
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +42,7 @@
 
             <!-- Image Logo -->
             <div class="logo">
-                <a href="index.html"><img src="images/resize.png" alt="Alternative"> Star<span>Tournament</span></a>
+                <a href="index.php"><img src="images/resize.png" alt="Alternative"> Star<span>Tournament</span></a>
             </div>
 
             <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
@@ -40,6 +50,10 @@
             </button>
 
             <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+
+                <?php if(empty($name)){?>
+                <!-- display nothing but login in button -->
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" >
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#details">Details <span class="sr-only">(current)</span></a>
@@ -56,6 +70,32 @@
                 </ul>
 
                 <a class="btn-solid-reg" href=login.php target="_self" rel="noopener noreferrer">Log In</a>
+            </div>
+    <?php }?>
+
+    <?php if(!empty($name)){?>
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" >
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#details">Details <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#">Welcome <?php echo $name?>!<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+
+                <a class="btn-solid-reg" href=logoutLogic.php target="_self" rel="noopener noreferrer">Log Out</a>
+            </div>
+    <?php }?>
             </div>
             <!-- end of navbar-collapse -->
         </div>
@@ -76,7 +116,7 @@
                 <div class="col-lg-6">
                     <div class="text-container">
                         <h1 class="h1-large">StarTournament is a free webapp designed to help people register for tournaments</h1>
-                        <a class="btn-solid-lg page-scroll" href="#details">Discover</a>
+                        <a class="btn-solid-lg page-scroll" href="home.php">View Tournaments</a>
                     </div>
                     <!-- end of text-container -->
                 </div>
