@@ -72,7 +72,7 @@ include "signupLogic.php";
                     </div>
 
                     <div>
-                        <input id="checkbox" type="checkbox" onclick="myFunction()"> Show Password
+                        <input type="checkbox" onclick="myFunction()"> Show Password
                     </div>
 
                     <div class="container-login100-form-btn">
