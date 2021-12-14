@@ -6,7 +6,7 @@ $username = 'root';
 $password = '';
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, 'startournament');
+$conn = mysqli_connect($servername, $username, $password, 'startournament 1');
 
 // Check connection
 if(!$conn){
