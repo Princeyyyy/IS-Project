@@ -2,6 +2,8 @@
 
 session_start();
 
+include "db.php";
+
 error_reporting(0);
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
@@ -27,6 +29,7 @@ $lname = $_SESSION['lname'];
     <link href="css/swiper.css" rel="stylesheet">
     <link href="css/magnific-popup.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/new.css" rel="stylesheet">
 
     <!-- Favicon  -->
     <link rel="icon" href="images/tournament.png">
@@ -37,9 +40,6 @@ $lname = $_SESSION['lname'];
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
         <div class="container">
-
-            <!-- Text Logo - Use this if you don't have a graphic logo -->
-            <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Gemdev</a> -->
 
             <!-- Image Logo -->
             <div class="logo">
@@ -112,47 +112,36 @@ $lname = $_SESSION['lname'];
     </div>
     <!-- end of header -->
 
-    <!-- start of cards -->
+    <!-- Start of Displaying tournaments -->
+    
+    <?php
 
-<div class="container">
-        <div class="row">
-        <div class="col-lg-6 mb-4">
-                <div class="card">
-                    <img class="card-img-top" src="" alt="">
-  
-                    <div class="card-body">
-                        <h5 class="card-title">Aga Khan Table Tennis Open Tournament</h5>
-                        <p class="card-text">
-                            Play amongest all top table tennis players and coaches at Aga Khan this weekend starting Saturday the
-                             11th. The tournament is open to everyone with categories based on players age. Click for more details.
-                        </p>
-                          
-                        <a class="btn-solid-reg popup-with-move-anim" href="">More Details</a>
-                        <a class="btn-solid-reg popup-with-move-anim" href="">Register</a>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card">
-                    <img class="card-img-top" src="" alt="">
-  
-                    <div class="card-body">
-                        <h5 class="card-title"> Strathmore Friday Chess Tournament</h5>
-                        <p class="card-text">
-                            Register and play chess at Strathmore university. This high end tournament meant to last 
-                            for atleast a day promises to be thrilling, competitive and entertaining. Click below for more details.
-                        </p>
-                          
-                        <a class="btn-solid-reg popup-with-move-anim" href="">More Details</a>
-                        <a class="btn-solid-reg popup-with-move-anim" href="">Register</a>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+    $sql="select * from Tournament;";
+    $result = mysqli_query($conn,$sql);
+    $resultCheck = mysqli_num_rows($result);
 
-    <!-- end of cards -->
+if ($resultCheck > 0) {
+    while($row=mysqli_fetch_assoc($result)) {
+
+        ?>
+
+<div class="card-container">
+<div class="card">
+    <h1><?php echo $row["name"]; ?> </h1>
+
+    <a class="btn-solid-reg popup-with-move-anim" href="#">Details</a>
+    <a class="btn-solid-reg popup-with-move-anim" href="#">Register</a>
+</div>
+</div>
+        <?php
+        
+    }  
+}
+
+?>
+    
+    
+    <!-- End of Displaying tournaments -->
 
     <!-- Footer -->
     <div class="footer bg-gray">
