@@ -1,24 +1,24 @@
 <?php
 
-session_start();
+if(isset($_POST['login']))
+{
 
-$servername = 'localhost';
-$username = 'root';
-$password = '';
-
-$conn = mysqli_connect($servername, $username, $password, 'startournament');
-
-$logusername = $_POST['logusername'];
+$logemail = $_POST['logemail'];
 $logpassword = $_POST['logpassword'];
+    
+$sql="select * from Users where email='$logemail' && password='$logpassword'";
+$db = mysqli_select_db($conn,'Users');
 
-$sql="select * from users where username='$logusername' && password='$logpassword'";
 $result = mysqli_query($conn,$sql);
 $num = mysqli_num_rows($result);
+$row=mysqli_fetch_array($result);
 
 if($num == 1)
 {
-    $_SESSION['name']= $_POST['logusername'];
+    $_SESSION['fname']= $row[1];
+    $_SESSION['lname']= $row[2];
     header("Location: home.php");
+
 }
 else
 {
@@ -27,6 +27,7 @@ else
         "alert('Invalid Username or Password! Try again');".
         "location.href = 'login.php'".
         "</script>";
+}
 }
 
 
