@@ -47,8 +47,24 @@ include "signupLogic.php";
 						Member SIgn Up
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Username required">
-                        <input class="input100" type="text" name="username" placeholder="Username">
+                    <div class="wrap-input100 validate-input" data-validate="First Name required">
+                        <input class="input100" type="text" name="fname" placeholder="First Name">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Last Name required">
+                        <input class="input100" type="text" name="lname" placeholder="Last Name">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Phone number required">
+                        <input class="input100" type="text" name="phoneno" placeholder="Phone Number">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -81,7 +97,7 @@ include "signupLogic.php";
 						</button>
                     </div>
 
-                    <div class="text-center p-t-136">
+                    <div class="text-center p-t-50">
                         <a class="txt2" href="login.php">
 							Already have an account! Log In
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>

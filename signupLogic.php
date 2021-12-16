@@ -5,7 +5,9 @@ if(isset($_POST['signup']))
     
     mysqli_select_db($conn,'signup');
 
-    $username = $_POST['username'];
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $phoneno = $_POST['phoneno'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     
@@ -25,7 +27,7 @@ if(isset($_POST['signup']))
         "alert('Registration was Successful!');".
         "location.href = 'login.php'".
         "</script>";
-        $sql = "insert into users(username, email, password) values ('$username','$email','$password')";
+        $sql = "insert into Users(fname, lname, email, password, phoneno) values ('$fname', '$lname','$email','$password','$phoneno')";
         mysqli_query($conn,$sql);
 
     }
