@@ -3,7 +3,7 @@
 if(isset($_POST['signup']))
 {
     
-    mysqli_select_db($conn,'signup');
+    mysqli_select_db($conn,'Users');
 
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -11,7 +11,7 @@ if(isset($_POST['signup']))
     $email = $_POST['email'];
     $password = $_POST['password'];
     
-    $select = "select * from users where email= '$email'";
+    $select = "select * from Users where email= '$email'";
     $result = mysqli_query($conn, $select);
     $num = mysqli_num_rows($result);
 
