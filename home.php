@@ -122,14 +122,15 @@ $lname = $_SESSION['lname'];
 
 if ($resultCheck > 0) {
     while($row=mysqli_fetch_assoc($result)) {
-
         $name = $row["name"];
+        $_SESSION = $row["id"];
+        $id = $_SESSION['id'];
 
         ?>
 
 <div class="card-container">
 <div class="card">
-    <h1><?php echo $name ?></h1>
+    <h1><?php echo $name . " " . $id; ?></h1>
 
     <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox">Details</a>
     <a class="btn-solid-reg popup-with-move-anim" href="#">Register</a>
@@ -148,23 +149,31 @@ if ($resultCheck > 0) {
 $sql="select * from Tournament;";
 $result = mysqli_query($conn,$sql);
 $resultCheck = mysqli_num_rows($result);
-$row=mysqli_fetch_array($result);
 
 if ($resultCheck > 0) {
+    while($row=mysqli_fetch_assoc($result)) {
 
-    $tid = $row[0];
-    $tprice = $row[1];
-    $tname = $row[2];
-    $torganizer = $row[3];
-    $torganizer_email = $row[4];
-    $ttime = $row[5];
-    $tvenue = $row[6];
-    $tdate = $row[7];
+        // $tid = $row["id"];
+        // $tprice = $row["price"];
+        // $tname = $row["name"];
+        // $torganizer = $row["organizer"];
+        // $torganizer_email = $row["organizer_email"];
+        // $ttime = $row["time"];
+        // $tvenue = $row["venue"];
+        // $tdate = $row["date"];
 
-    ?>
+        $sql2="select * from Tournament where id = '$id';";
+        $result2 = mysqli_query($conn,$sql2);
+        $resultCheck2 = mysqli_num_rows($result2);
+        $row2=mysqli_fetch_array($result2);
 
-<!-- Details -->
-<div id="details-lightbox" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        if ($resultCheck2 > 0) {
+
+            $name = $row2[2];
+
+            ?>
+            <!-- Details -->
+    <div id="details-lightbox" class="lightbox-basic zoom-anim-dialog mfp-hide">
         <div class="row">
             <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
             <div class="col-lg-7">
@@ -175,7 +184,7 @@ if ($resultCheck > 0) {
             </div>
             <!-- end of col -->
             <div class="col-lg-5">
-                <h3><?php echo $tname ?></h3>
+                <h3><?php echo $name . " " . $tid; ?></h3>
                 <hr>
                 <p>In cloud storing, the user, rather than saving the data at local storage or hard disk, stores data somewhere at the remote location, which can be accessed using internet service. There are various cloud storage service providers who sell
                     storage services for different ranges.</p>
@@ -214,7 +223,15 @@ if ($resultCheck > 0) {
     </div>
     <!-- end of lightbox-basic -->
     <!-- end of lightbox -->
-    <?php  
+        <?php
+            
+        }
+
+        ?>
+
+        <?php
+        
+    }  
 }
 
 ?>
