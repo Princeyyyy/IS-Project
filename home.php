@@ -123,13 +123,15 @@ $lname = $_SESSION['lname'];
 if ($resultCheck > 0) {
     while($row=mysqli_fetch_assoc($result)) {
 
+        $name = $row["name"];
+
         ?>
 
 <div class="card-container">
 <div class="card">
-    <h1><?php echo $row["name"]; ?> </h1>
+    <h1><?php echo $name ?></h1>
 
-    <a class="btn-solid-reg popup-with-move-anim" href="#">Details</a>
+    <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox">Details</a>
     <a class="btn-solid-reg popup-with-move-anim" href="#">Register</a>
 </div>
 </div>
@@ -139,9 +141,83 @@ if ($resultCheck > 0) {
 }
 
 ?>
-    
-    
     <!-- End of Displaying tournaments -->
+
+    <?php
+
+$sql="select * from Tournament;";
+$result = mysqli_query($conn,$sql);
+$resultCheck = mysqli_num_rows($result);
+$row=mysqli_fetch_array($result);
+
+if ($resultCheck > 0) {
+
+    $tid = $row[0];
+    $tprice = $row[1];
+    $tname = $row[2];
+    $torganizer = $row[3];
+    $torganizer_email = $row[4];
+    $ttime = $row[5];
+    $tvenue = $row[6];
+    $tdate = $row[7];
+
+    ?>
+
+<!-- Details -->
+<div id="details-lightbox" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="row">
+            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+            <div class="col-lg-7">
+                <div class="image-container">
+                    <img class="img-fluid" src="images/tournament.png" alt="alternative">
+                </div>
+                <!-- end of image-container -->
+            </div>
+            <!-- end of col -->
+            <div class="col-lg-5">
+                <h3><?php echo $tname ?></h3>
+                <hr>
+                <p>In cloud storing, the user, rather than saving the data at local storage or hard disk, stores data somewhere at the remote location, which can be accessed using internet service. There are various cloud storage service providers who sell
+                    storage services for different ranges.</p>
+                <h4>Details</h4>
+                <ul class="list-unstyled li-space-lg">
+                    <li class="media">
+                        <i class="fas fa-check"></i>
+                        <div class="media-body">Oranizer: <strong><?php echo $torganizer ?></strong></div>
+                    </li>
+                    <li class="media">
+                        <i class="fas fa-check"></i>
+                        <div class="media-body">Organizer Email: <strong><?php echo $torganizer_email ?></strong></div>
+                    </li>
+                    <li class="media">
+                        <i class="fas fa-check"></i>
+                        <div class="media-body">Time: <strong><?php echo $ttime ?></strong></div>
+                    </li>
+                    <li class="media">
+                        <i class="fas fa-check"></i>
+                        <div class="media-body">Price: <strong><?php echo $tprice ?>.Ksh</strong></div>
+                    </li>
+                    <li class="media">
+                        <i class="fas fa-check"></i>
+                        <div class="media-body">Venue: <strong><?php echo $tvenue ?></strong></div>
+                    </li>
+                    <li class="media">
+                        <i class="fas fa-check"></i>
+                        <div class="media-body">Date: <strong><?php echo $tdate ?></strong></div>
+                    </li>
+                </ul>
+                <a class="btn-solid-reg mfp-close page-scroll" href="#contact">Register</a> <button class="btn-outline-reg mfp-close as-button" type="button">Back</button>
+            </div>
+            <!-- end of col -->
+        </div>
+        <!-- end of row -->
+    </div>
+    <!-- end of lightbox-basic -->
+    <!-- end of lightbox -->
+    <?php  
+}
+
+?>
 
     <!-- Footer -->
     <div class="footer bg-gray">
