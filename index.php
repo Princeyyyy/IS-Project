@@ -3,7 +3,8 @@
 session_start();
 
 error_reporting(0);
-$name = $_SESSION['name'];
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
 
 ?>
 
@@ -51,7 +52,7 @@ $name = $_SESSION['name'];
 
             <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
 
-                <?php if(empty($name)){?>
+                <?php if(empty($fname)){?>
                 <!-- display nothing but login in button -->
                 <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" >
                 <ul class="navbar-nav ml-auto">
@@ -73,7 +74,7 @@ $name = $_SESSION['name'];
             </div>
     <?php }?>
 
-    <?php if(!empty($name)){?>
+    <?php if(!empty($fname)){?>
                 <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" >
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -89,7 +90,7 @@ $name = $_SESSION['name'];
                         <a class="nav-link page-scroll" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#">Welcome <?php echo $name?>!<span class="sr-only">(current)</span></a>
+                    <a class="nav-link page-scroll" href="#">Welcome <?php echo $fname . " " . $lname;?>!<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
 

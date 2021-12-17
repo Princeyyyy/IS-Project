@@ -2,17 +2,13 @@
 
 session_start();
 
-include "db.php";
-include "signupLogic.php";
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Sign Up</title>
+    <title>Password Reset</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -39,76 +35,30 @@ include "signupLogic.php";
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
-                    <img src="images/tournament.png" alt="img">
+                    <img src="images/tournament.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form" method="POST" enctype="multipart/form-data">
+                <form class="login100-form validate-form" action="reset1Logic.php" method="POST">
                     <span class="login100-form-title">
-						Member SIgn Up
+						Member Password Reset!
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="First Name required">
-                        <input class="input100" type="text" name="fname" placeholder="First Name">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Last Name required">
-                        <input class="input100" type="text" name="lname" placeholder="Last Name">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Phone number required">
-                        <input class="input100" type="text" name="phoneno" placeholder="Phone Number">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-phone" aria-hidden="true"></i>
-						</span>
-                    </div>
+                    <span class="login100-form-title">
+						Enter your account email!!!!
+					</span>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" placeholder="Email">
+                        <input class="input100" type="email" name="resetemail" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							<i class="fa fa-user" aria-hidden="true"></i>
 						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" id="spassword" placeholder="Password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div>
-                        <input type="checkbox" onclick="myFunction()"> Show Password
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="signup">
-							Sign Up
+                        <button class="login100-form-btn" name="checkemail">
+							Check Email
 						</button>
-                    </div>
-
-                    <div class="text-center p-t-50">
-                        <a class="txt2" href="login.php">
-							Already have an account! Log In
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-                    </div>
-
-                    <div class="text-center">
-                        <a class="txt2" href="index.php">
-							Back
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
                     </div>
                 </form>
             </div>
@@ -134,7 +84,7 @@ include "signupLogic.php";
     </script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
-    <script src="js/sign.js"></script>
+    <script src="js/log.js"></script>
 
 </body>
 
