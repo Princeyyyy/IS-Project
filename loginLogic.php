@@ -24,7 +24,7 @@ else
 {
     echo "
         <script type=\"text/javascript\">".
-        "alert('Invalid Username or Password! Try again');".
+        "alert('Invalid Email or Password! Try again');".
         "location.href = 'login.php'".
         "</script>";
 }

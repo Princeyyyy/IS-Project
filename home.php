@@ -122,60 +122,23 @@ $lname = $_SESSION['lname'];
 
 if ($resultCheck > 0) {
     while($row=mysqli_fetch_assoc($result)) {
-        $name = $row["name"];
-        $_SESSION = $row["id"];
-        $id = $_SESSION['id'];
+
+
+        $tid = $row["id"];
+        $tprice = $row["price"];
+        $tname = $row["name"];
+        $torganizer = $row["organizer"];
+        $torganizer_email = $row["organizer_email"];
+        $ttime = $row["time"];
+        $tvenue = $row["venue"];
+        $tdate = $row["date"];
+        
 
         ?>
 
-<div class="card-container">
-<div class="card">
-    <h1><?php echo $name . " " . $id; ?></h1>
-
-    <a class="btn-solid-reg popup-with-move-anim" href="#details-lightbox">Details</a>
-    <a class="btn-solid-reg popup-with-move-anim" href="#">Register</a>
-</div>
-</div>
-        <?php
-        
-    }  
-}
-
-?>
-    <!-- End of Displaying tournaments -->
-
-    <?php
-
-$sql="select * from Tournament;";
-$result = mysqli_query($conn,$sql);
-$resultCheck = mysqli_num_rows($result);
-
-if ($resultCheck > 0) {
-    while($row=mysqli_fetch_assoc($result)) {
-
-        // $tid = $row["id"];
-        // $tprice = $row["price"];
-        // $tname = $row["name"];
-        // $torganizer = $row["organizer"];
-        // $torganizer_email = $row["organizer_email"];
-        // $ttime = $row["time"];
-        // $tvenue = $row["venue"];
-        // $tdate = $row["date"];
-
-        $sql2="select * from Tournament where id = '$id';";
-        $result2 = mysqli_query($conn,$sql2);
-        $resultCheck2 = mysqli_num_rows($result2);
-        $row2=mysqli_fetch_array($result2);
-
-        if ($resultCheck2 > 0) {
-
-            $name = $row2[2];
-
-            ?>
-            <!-- Details -->
-    <div id="details-lightbox" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <!-- Lightbox-1 -->
+    <div id="details-lightbox" class="lightbox-basic zoom-anim-dialog">
         <div class="row">
-            <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
             <div class="col-lg-7">
                 <div class="image-container">
                     <img class="img-fluid" src="images/tournament.png" alt="alternative">
@@ -184,11 +147,12 @@ if ($resultCheck > 0) {
             </div>
             <!-- end of col -->
             <div class="col-lg-5">
-                <h3><?php echo $name . " " . $tid; ?></h3>
+                <h3><?php echo $tname ?></h3>
                 <hr>
-                <p>In cloud storing, the user, rather than saving the data at local storage or hard disk, stores data somewhere at the remote location, which can be accessed using internet service. There are various cloud storage service providers who sell
-                    storage services for different ranges.</p>
-                <h4>Details</h4>
+                <p>Find the details of the tournament below! 
+                    If you have any questions or require further assistance,
+                    kindly reach out to us at <a class="blue no-line" href="mailto:tournamentstar2021@gmail.com" target="_blank">contact@tournamentstar2021.com</a></p>
+                    <h4>Details</h4>
                 <ul class="list-unstyled li-space-lg">
                     <li class="media">
                         <i class="fas fa-check"></i>
@@ -215,7 +179,7 @@ if ($resultCheck > 0) {
                         <div class="media-body">Date: <strong><?php echo $tdate ?></strong></div>
                     </li>
                 </ul>
-                <a class="btn-solid-reg mfp-close page-scroll" href="#contact">Register</a> <button class="btn-outline-reg mfp-close as-button" type="button">Back</button>
+                <a class="btn-solid-reg mfp-close page-scroll" href="#contact">Register</a>
             </div>
             <!-- end of col -->
         </div>
@@ -223,11 +187,7 @@ if ($resultCheck > 0) {
     </div>
     <!-- end of lightbox-basic -->
     <!-- end of lightbox -->
-        <?php
-            
-        }
-
-        ?>
+    <!-- end of details lightbox -->
 
         <?php
         
@@ -235,6 +195,7 @@ if ($resultCheck > 0) {
 }
 
 ?>
+    <!-- End of Displaying tournaments -->
 
     <!-- Footer -->
     <div class="footer bg-gray">
@@ -315,6 +276,11 @@ if ($resultCheck > 0) {
     <!-- Magnific Popup for lightboxes -->
     <script src="js/scripts.js"></script>
     <!-- Custom scripts -->
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
 </body>
 
 </html>
