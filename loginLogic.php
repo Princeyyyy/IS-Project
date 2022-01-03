@@ -17,7 +17,11 @@ if($num == 1)
 {
     $_SESSION['fname']= $row[1];
     $_SESSION['lname']= $row[2];
-    header("Location: home.php");
+    echo "
+        <script type=\"text/javascript\">".
+        "alert('Login Successful!');".
+        "location.href = 'home.php'".
+        "</script>";
 
 }
 else

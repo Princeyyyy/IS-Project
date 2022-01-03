@@ -68,6 +68,13 @@ include "resetLogic2.php";
 							Check Email
 						</button>
                     </div>
+
+                    <div class="text-center p-t-50">
+                        <a class="txt2" href="login.php">
+							Back
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+                    </div>
                 </form>
             <?php }?>
 
@@ -94,6 +101,13 @@ include "resetLogic2.php";
                         <button class="login100-form-btn" name="reset">
 							Reset Password
 						</button>
+                    </div>
+
+                    <div class="text-center p-t-50">
+                        <a class="txt2" href="login.php">
+							Back
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
                     </div>
                 </form>
             <?php }?>

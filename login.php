@@ -55,11 +55,15 @@ include "loginLogic.php";
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="logpassword" id="spasssword" placeholder="Password">
+                        <input class="input100" type="password" name="logpassword" id="spassword" placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" onclick="myFunction()"> Show Password
                     </div>
 
                     <div class="container-login100-form-btn">
@@ -70,10 +74,10 @@ include "loginLogic.php";
 
                     <div class="text-center p-t-12">
                         <span class="txt1">
-							Forgot!!
+							Forgot Password?
 						</span>
                         <a class="txt2" href="reset1.php">
-                            Reset Password?
+                            Reset Password!!
 						</a>
                     </div>
 
