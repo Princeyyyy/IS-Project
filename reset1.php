@@ -4,6 +4,13 @@ session_start();
 
 include "db.php";
 include "reset1Logic.php";
+error_reporting(0);
+$id = $_SESSION['id'];
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
+include "resetLogic2.php";
 
 ?>
 
@@ -11,7 +18,7 @@ include "reset1Logic.php";
 <html lang="en">
 
 <head>
-    <title>Check Email</title>
+    <title>Reset Password</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -41,6 +48,8 @@ include "reset1Logic.php";
                     <img src="images/tournament.png" alt="IMG">
                 </div>
 
+                <?php if(empty($email)){?>
+                <!-- display nothing but login in button -->
                 <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
 						Search for your Email Account!!!
@@ -60,6 +69,34 @@ include "reset1Logic.php";
 						</button>
                     </div>
                 </form>
+            <?php }?>
+
+            <?php if(!empty($email)){?>
+                <!-- display nothing but login in button -->
+                <form class="login100-form validate-form" method="POST">
+                    <span class="login100-form-title">
+						Reset Password for <?php echo $fname . " " . $lname?>!
+					</span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="resetpassword" id="spassword" placeholder="Password">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" onclick="myFunction()"> Show Password
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="reset">
+							Reset Password
+						</button>
+                    </div>
+                </form>
+            <?php }?>
             </div>
         </div>
     </div>
@@ -81,7 +118,7 @@ include "reset1Logic.php";
     </script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
-    <script src="js/log.js"></script>
+    <script src="js/sign.js"></script>
 
 </body>
 
