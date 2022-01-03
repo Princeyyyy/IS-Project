@@ -2,13 +2,23 @@
 
 session_start();
 
+include "db.php";
+include "reset1Logic.php";
+error_reporting(0);
+$id = $_SESSION['id'];
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
+include "resetLogic2.php";
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Password Reset</title>
+    <title>Reset Password</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -38,17 +48,15 @@ session_start();
                     <img src="images/tournament.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form" action="reset1Logic.php" method="POST">
+                <?php if(empty($email)){?>
+                <!-- display nothing but login in button -->
+                <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
-						Member Password Reset!
-					</span>
-
-                    <span class="login100-form-title">
-						Enter your account email!!!!
+						Search for your Email Account!!!
 					</span>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="email" name="resetemail" placeholder="Email">
+                        <input class="input100" type="email" name="reset1email" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -56,16 +64,56 @@ session_start();
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="checkemail">
+                        <button class="login100-form-btn" name="check">
 							Check Email
 						</button>
                     </div>
+
+                    <div class="text-center p-t-50">
+                        <a class="txt2" href="login.php">
+							Back
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+                    </div>
                 </form>
+            <?php }?>
+
+            <?php if(!empty($email)){?>
+                <!-- display nothing but login in button -->
+                <form class="login100-form validate-form" method="POST">
+                    <span class="login100-form-title">
+						Reset Password for <?php echo $fname . " " . $lname?>!
+					</span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="resetpassword" id="spassword" placeholder="Password">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" onclick="myFunction()"> Show Password
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="reset">
+							Reset Password
+						</button>
+                    </div>
+
+                    <div class="text-center p-t-50">
+                        <a class="txt2" href="login.php">
+							Back
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+                    </div>
+                </form>
+            <?php }?>
             </div>
         </div>
     </div>
-
-
 
 
     <!--===============================================================================================-->
@@ -84,7 +132,7 @@ session_start();
     </script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
-    <script src="js/log.js"></script>
+    <script src="js/sign.js"></script>
 
 </body>
 
