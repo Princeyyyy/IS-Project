@@ -120,7 +120,7 @@ $lname = $_SESSION['lname'];
     $result = mysqli_query($conn,$sql);
     $resultCheck = mysqli_num_rows($result);
 
-if ($resultCheck > 0) {
+    if ($resultCheck > 0) {
     while($row=mysqli_fetch_assoc($result)) {
 
 
@@ -179,7 +179,7 @@ if ($resultCheck > 0) {
                         <div class="media-body">Date: <strong><?php echo $tdate ?></strong></div>
                     </li>
                 </ul>
-                <a class="btn-solid-reg mfp-close page-scroll" href="#contact">Register</a>
+                <a class="btn-solid-reg mfp-close page-scroll" href="tournamentRegistration.php">Register</a>
             </div>
             <!-- end of col -->
         </div>
@@ -193,8 +193,7 @@ if ($resultCheck > 0) {
         
     }  
 }
-
-?>
+    ?>
     <!-- End of Displaying tournaments -->
 
     <!-- Footer -->
