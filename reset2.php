@@ -3,7 +3,9 @@
 session_start();
 
 include "db.php";
-include "loginLogic.php";
+error_reporting(0);
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
 
 ?>
 
@@ -11,7 +13,7 @@ include "loginLogic.php";
 <html lang="en">
 
 <head>
-    <title>Login</title>
+    <title>Password Reset</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -43,52 +45,21 @@ include "loginLogic.php";
 
                 <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
-						Member Login
+						Reset Password for <?php echo $email;?>!
 					</span>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="logemail" placeholder="Email">
+                        <input class="input100" type="email" name="resetemail" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="logpassword" id="spasssword" placeholder="Password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
+							<i class="fa fa-user" aria-hidden="true"></i>
 						</span>
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="login">
-							Login
+                        <button class="login100-form-btn" name="checkemail">
+							Check Email
 						</button>
-                    </div>
-
-                    <div class="text-center p-t-12">
-                        <span class="txt1">
-							Forgot!!
-						</span>
-                        <a class="txt2" href="reset1.php">
-                            Reset Password?
-						</a>
-                    </div>
-
-                    <div class="text-center p-t-136">
-                        <a class="txt2" href="signup.php">
-							Create your Account
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-                    </div>
-
-                    <div class="text-center">
-                        <a class="txt2" href="index.php">
-							Back
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
                     </div>
                 </form>
             </div>
@@ -114,7 +85,7 @@ include "loginLogic.php";
     </script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
-    <script src="js/sign.js"></script>
+    <script src="js/log.js"></script>
 
 </body>
 
