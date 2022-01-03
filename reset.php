@@ -3,14 +3,14 @@
 session_start();
 
 include "db.php";
-include "reset1Logic.php";
+include "resetLogic.php";
 error_reporting(0);
 $id = $_SESSION['id'];
-$fname = $_SESSION['fname'];
-$lname = $_SESSION['lname'];
+$fname1 = $_SESSION['fname'];
+$lname1 = $_SESSION['lname'];
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
-include "resetLogic2.php";
+include "resetLogic1.php";
 
 ?>
 
@@ -49,7 +49,7 @@ include "resetLogic2.php";
                 </div>
 
                 <?php if(empty($email)){?>
-                <!-- display nothing but login in button -->
+                <!-- Display checking email -->
                 <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
 						Search for your Email Account!!!
@@ -59,7 +59,7 @@ include "resetLogic2.php";
                         <input class="input100" type="email" name="reset1email" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
+							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
                     </div>
 
@@ -70,7 +70,7 @@ include "resetLogic2.php";
                     </div>
 
                     <div class="text-center p-t-50">
-                        <a class="txt2" href="login.php">
+                        <a class="txt2" href="logoutLogic1.php">
 							Back
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
@@ -79,10 +79,10 @@ include "resetLogic2.php";
             <?php }?>
 
             <?php if(!empty($email)){?>
-                <!-- display nothing but login in button -->
+                <!-- Display password reset -->
                 <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
-						Reset Password for <?php echo $fname . " " . $lname?>!
+						Reset Password for <?php echo $fname1 . " " . $lname1?>!
 					</span>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
@@ -104,7 +104,7 @@ include "resetLogic2.php";
                     </div>
 
                     <div class="text-center p-t-50">
-                        <a class="txt2" href="login.php">
+                        <a class="txt2" href="logoutLogic1.php">
 							Back
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>

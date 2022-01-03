@@ -4,6 +4,9 @@ session_start();
 
 include "db.php";
 include "signupLogic.php";
+error_reporting(0);
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
 
 ?>
 
@@ -42,9 +45,11 @@ include "signupLogic.php";
                     <img src="images/tournament.png" alt="img">
                 </div>
 
+                <?php if(empty($fname)){?>
+                <!-- Display signup screen -->
                 <form class="login100-form validate-form" method="POST" enctype="multipart/form-data">
                     <span class="login100-form-title">
-						Member SIgn Up
+						Member Sign Up
 					</span>
 
                     <div class="wrap-input100 validate-input" data-validate="First Name required">
@@ -111,6 +116,33 @@ include "signupLogic.php";
 						</a>
                     </div>
                 </form>
+            <?php }?>
+
+            <?php if(!empty($fname)){?>
+                <!-- Display user is logged in -->
+                <form class="login100-form validate-form" method="POST">
+                <span class="login100-form-title">
+                     <?php echo $fname . " " . $lname?>!
+					</span>
+
+                    <span class="login100-form-title">
+						You're Logged In!!
+					</span>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="return1">
+							Return to Home Page
+						</button>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="logout1">
+							LogOut
+						</button>
+                    </div>
+                </form>
+            <?php }?>
+
             </div>
         </div>
     </div>

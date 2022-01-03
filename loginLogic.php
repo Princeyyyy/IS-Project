@@ -28,11 +28,24 @@ else
 {
     echo "
         <script type=\"text/javascript\">".
-        "alert('Invalid Email or Password! Try again');".
+        "alert('Invalid Email or Password! Try again!!');".
         "location.href = 'login.php'".
         "</script>";
 }
 }
 
+if(isset($_POST['return']))
+{
+header("Location: home.php");
+}
+
+if(isset($_POST['logout']))
+{
+    
+session_start();
+session_destroy();
+
+header('location: login.php');
+}
 
 ?>

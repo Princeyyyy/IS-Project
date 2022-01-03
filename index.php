@@ -310,7 +310,7 @@ $lname = $_SESSION['lname'];
                     <div class="text-box bg-gray">
                         <i class="fas fa-images"></i>
                         <h4>Tournament Availability</h4>
-                        <p>Browse the enormous component collection and find the right parts for your online project. Cards, lists, image sliders, everything you need</p>
+                        <p>With a wide collection of tournament availability from football to chess to swimming, navigate and find the right tournament for you.</p>
                     </div>
                     <!-- end of text-box -->
                 </div>
@@ -318,8 +318,8 @@ $lname = $_SESSION['lname'];
                 <div class="col-lg-4">
                     <div class="text-box bg-gray">
                         <i class="fas fa-download"></i>
-                        <h4>Easy to download</h4>
-                        <p>It's very easy to download Gemdev just login with your credentials and click the green download button. The package will download instantly</p>
+                        <h4>Easy to use</h4>
+                        <p>StarTournament is designed to easily and smoothly navigate trough it without trouble.</p>
                     </div>
                     <!-- end of text-box -->
                 </div>
@@ -340,7 +340,7 @@ $lname = $_SESSION['lname'];
                     <div class="text-box bg-gray">
                         <i class="fas fa-file-alt"></i>
                         <h4>Simple licensing</h4>
-                        <p>We hear your pain and we're offering Gemdev under the MIT license, which means you can use it for any kind of project and for any number of times</p>
+                        <p>We hear your pain and we're offering Gemdev under the MIT license, which means you can use it for any kind of project and for any number of times.</p>
                     </div>
                     <!-- end of text-box -->
                 </div>
@@ -349,7 +349,7 @@ $lname = $_SESSION['lname'];
                     <div class="text-box bg-gray">
                         <i class="fas fa-award"></i>
                         <h4>Great results</h4>
-                        <p>Users have sent us positive feedback about the framework. That means we are on to something good here so we'll keep improving it</p>
+                        <p>Users have sent us positive feedback about the framework. That means we are on to something good here so we'll keep improving it.</p>
                     </div>
                     <!-- end of text-box -->
                 </div>

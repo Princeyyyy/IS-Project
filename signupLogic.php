@@ -33,4 +33,19 @@ if(isset($_POST['signup']))
     }
 }
 
+if(isset($_POST['return1']))
+{
+header("Location: home.php");
+}
+
+if(isset($_POST['logout1']))
+{
+    
+session_start();
+session_destroy();
+
+header('location: signup.php');
+}
+
+
 ?>

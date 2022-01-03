@@ -4,6 +4,9 @@ session_start();
 
 include "db.php";
 include "loginLogic.php";
+error_reporting(0);
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
 
 ?>
 
@@ -41,6 +44,8 @@ include "loginLogic.php";
                     <img src="images/tournament.png" alt="IMG">
                 </div>
 
+                <?php if(empty($fname)){?>
+                <!-- Display login page -->
                 <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
 						Member Login
@@ -76,7 +81,7 @@ include "loginLogic.php";
                         <span class="txt1">
 							Forgot Password?
 						</span>
-                        <a class="txt2" href="reset1.php">
+                        <a class="txt2" href="reset.php">
                             Reset Password!!
 						</a>
                     </div>
@@ -95,6 +100,33 @@ include "loginLogic.php";
 						</a>
                     </div>
                 </form>
+            <?php }?>
+
+            <?php if(!empty($fname)){?>
+                <!-- Display user is logged in -->
+                <form class="login100-form validate-form" method="POST">
+                <span class="login100-form-title">
+                     <?php echo $fname . " " . $lname?>!
+					</span>
+
+                    <span class="login100-form-title">
+						You're Logged In!!
+					</span>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="return">
+							Return to Home Page
+						</button>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="logout">
+							LogOut
+						</button>
+                    </div>
+                </form>
+            <?php }?>
+
             </div>
         </div>
     </div>
