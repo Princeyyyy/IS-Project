@@ -1,12 +1,11 @@
 <?php
 
-// session_start();
+session_start();
 
-// include "db.php";
-// include "signupLogic.php";
-// error_reporting(0);
-// $fname = $_SESSION['fname'];
-// $lname = $_SESSION['lname'];
+include "db.php";
+error_reporting(0);
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
 
 ?>
 
@@ -32,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/main2.css">
     <!--===============================================================================================-->
 </head>
 
@@ -45,20 +44,36 @@
                     <img src="images/tournament.png" alt="img">
                 </div>
 
-                <form class="login100-form validate-form" method="POST" enctype="multipart/form-data">
+                <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
 						Tournament Registration
 					</span>
 
-                    <div class="wrap-input100">
-                    <label for="pizzaSize">Tournament</label>
-                                    <select class="browser-default custom-select" id="pizzaSize">
-                                        <option value="Select"></option>
-                                        <option label="Large - Ksh 2000" value="2000"></option>
-                                        <option label="Medium - Ksh 1500" value="1500"></option>
-                                        <option label="Small - Ksh 1000" value="1000"></option>
-                                    </select>
-                    </div>
+                    <!-- Start of Displaying tournaments -->
+    
+    <?php
+
+$val1 = $_GET["value"];
+$val = mysqli_real_escape_string($conn,"Strathmore Chess");
+$sql="select * from `Tournament`;";
+$result = mysqli_query($conn,$sql);
+$resultCheck = mysqli_num_rows($result);
+?>
+    <div class="wrap-input101">
+        <label>Tournament:</label>
+            <select class="input101" aria-placeholder="Tournaments">
+            <option selected="selected">Choose one</option>
+            <?php
+    foreach($result as $row2) { ?>
+      <option value="<?= $row2['name'] ?>"><?= $row2['name'] ?></option>
+      <?php
+    } ?>
+    </select>
+    </div>
+
+    <?php
+?>
+<!-- End of Displaying tournaments -->
 
                     <div class="wrap-input100 validate-input" data-validate="First Name required">
                         <input class="input100" type="text" name="fname" placeholder="First Name">
@@ -73,14 +88,6 @@
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" id="spassword" placeholder="Password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
                     </div>
 
