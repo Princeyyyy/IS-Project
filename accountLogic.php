@@ -19,10 +19,10 @@ if(isset($_POST['update']))
 
         echo "
         <script type=\"text/javascript\">".
-        "alert('Account Update was Successful!');".
+        "alert('Account Update was Successful! Changes will take effect upon next login!');".
         "location.href = 'home.php'".
         "</script>";
-        $sql = "update `Users` set `fname` = '$fname', `lname` = '$lname', `email` = '$email', `password` = '$password', `phoneno` = '$phoneno' where `Users`.`id` = $id";
+        $sql = "update `Users` set `fname` = '$fname', `lname` = '$lname', `password` = '$password', `phoneno` = '$phoneno' where `Users`.`id` = $id";
         mysqli_query($conn,$sql);
     }else {
         echo "

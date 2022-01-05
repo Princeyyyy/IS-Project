@@ -96,7 +96,7 @@ error_reporting(0);
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="aemail" placeholder="Email" value="<?php echo $email?>">
+                        <input class="input100" type="text" name="aemail" placeholder="Email" value="<?php echo $email?>" readonly>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
