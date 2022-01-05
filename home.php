@@ -49,7 +49,7 @@ if($fname == "admin"){
 
             <!-- Image Logo -->
             <div class="logo">
-                <a href="index.html"><img src="images/resize.png" alt="Alternative"> Star<span>Tournament</span></a>
+                <a href="index.php"><img src="images/resize.png" alt="Alternative"> Star<span>Tournament</span></a>
             </div>
 
             <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
