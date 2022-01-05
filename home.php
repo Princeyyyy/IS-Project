@@ -8,6 +8,12 @@ error_reporting(0);
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
 
+if($fname == "admin"){
+    $name = 1;
+}else{
+    $name = 0;
+}
+
 ?>
 
 
@@ -63,7 +69,20 @@ $lname = $_SESSION['lname'];
             </div>
     <?php }?>
 
-    <?php if(!empty($fname)){?>
+    <?php if(!empty($fname)  && $name == 1){?>
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" >
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="admin.php">Welcome <?php echo $fname;?>!<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+
+                <a class="btn-solid-reg" href=logoutLogic.php target="_self" rel="noopener noreferrer">Log Out</a>
+            </div>
+    <?php }?>
+        
+
+    <?php if(!empty($fname)  && $name == 0){?>
                 <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" >
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -74,7 +93,6 @@ $lname = $_SESSION['lname'];
                 <a class="btn-solid-reg" href=logoutLogic.php target="_self" rel="noopener noreferrer">Log Out</a>
             </div>
     <?php }?>
-            <!-- end of navbar-collapse -->
         </div>
         <!-- end of container -->
     </nav>
