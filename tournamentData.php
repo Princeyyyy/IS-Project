@@ -2,15 +2,9 @@
 
 session_start();
 
-error_reporting(0);
 include "db.php";
-$id = $_SESSION['id'];
-$fname = $_SESSION['fname'];
-$lname = $_SESSION['lname'];
-$email = $_SESSION['email'];
-$password = $_SESSION['password'];
-$phone = $_SESSION['phone'];
-include "accountLogic.php";
+include "tournamentDataLogic.php";
+
 ?>
 
 
@@ -18,7 +12,7 @@ include "accountLogic.php";
 <html lang="en">
 
 <head>
-    <title>User Account</title>
+    <title>Tournament Details</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -48,87 +42,80 @@ include "accountLogic.php";
                     <img src="images/tournament.png" alt="img">
                 </div>
 
-                <?php if(empty($fname)){?>
-                <!-- Display signup screen -->
-                <form class="login100-form validate-form" method="POST">
-                    <span class="login100-form-title">
-						You're Logged Out. Login to View Account!!
-					</span>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="login1">
-							LogIn
-						</button>
-                    </div>
-                </form>
-            <?php }?>
-
-            <?php if(!empty($fname)){?>
-                <!-- Display user is logged in -->
                 <form class="login100-form validate-form" method="POST" enctype="multipart/form-data">
                     <span class="login100-form-title">
-						User Account
+						Tournament Details
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="First Name required">
-                        <input class="input100" type="text" name="afname" placeholder="First Name" value="<?php echo $fname?>">
+                    <div class="wrap-input100 validate-input" data-validate="Tournament Name required">
+                        <input class="input100" type="text" name="tname" placeholder="Name">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
 						</span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Last Name required">
-                        <input class="input100" type="text" name="alname" placeholder="Last Name" value="<?php echo $lname?>">
+                    <div class="wrap-input100 validate-input" data-validate="Tournament Price required">
+                        <input class="input100" type="number" name="tprice" placeholder="Price">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-money" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Tournament Organizer required">
+                        <input class="input100" type="text" name="torganizer" placeholder="Oganizer Name">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
 						</span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Phone number required">
-                        <input class="input100" type="text" name="aphoneno" placeholder="Phone Number" value="<?php echo $phone?>">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-phone" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="aemail" placeholder="Email" value="<?php echo $email?>" readonly>
+                    <div class="wrap-input100 validate-input" data-validate="Valid Tournament organizer email is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="torganizer_email" placeholder="Organizer Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="apassword" id="spassword" placeholder="Password" value="<?php echo $password?>">
+                    <div class="wrap-input100 validate-input" data-validate="Tournament Time required">
+                        <input class="input100" type="text" name="ttime" placeholder="Time">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
+							<i class="fa fa-clock-o" aria-hidden="true"></i>
 						</span>
                     </div>
 
-                    <div>
-                        <input type="checkbox" onclick="myFunction()"> Show Password
+                    <div class="wrap-input100 validate-input" data-validate="Tournament Venue required">
+                        <input class="input100" type="text" name="tvenue" placeholder="Venue">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-map-marker" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Tournament Date required">
+                        <input class="input100" type="text" name="tdate" placeholder="Date">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-calendar" aria-hidden="true"></i>
+						</span>
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="update">
-							Update
+                        <button class="login100-form-btn" name="tournament">
+							Enter Details
 						</button>
                     </div>
 
-                    <div class="text-center">
-                        <a class="txt2" href="home.php">
+                    <div class="text-center p-t-50">
+                        <a class="txt2" href="admin.php">
 							Back
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
                     </div>
                 </form>
-            <?php }?>
-
             </div>
         </div>
     </div>
