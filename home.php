@@ -67,7 +67,7 @@ $lname = $_SESSION['lname'];
                 <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" >
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#details">Welcome <?php echo $fname . " " . $lname;?>!<span class="sr-only">(current)</span></a>
+                        <a class="nav-link page-scroll" href="account.php">Welcome <?php echo $fname . " " . $lname;?>!<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
 
