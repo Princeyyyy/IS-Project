@@ -3,9 +3,16 @@
 session_start();
 
 include "db.php";
+
 error_reporting(0);
+$id = $_SESSION['id'];
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
+$phone = $_SESSION['phone'];
+
+include "tournamentRegistrationLogic.php";
 
 ?>
 
@@ -44,6 +51,23 @@ $lname = $_SESSION['lname'];
                     <img src="images/tournament.png" alt="img">
                 </div>
 
+                <?php if(empty($fname)){?>
+                <!-- Display signup screen -->
+                <form class="login100-form validate-form" method="POST">
+                    <span class="login100-form-title">
+						You're Logged Out!!
+					</span>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="login2">
+							LogIn
+						</button>
+                    </div>
+                </form>
+            <?php }?>
+
+            <?php if(!empty($fname)){?>
+                <!-- Display Registration screen -->
                 <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
 						Tournament Registration
@@ -51,32 +75,29 @@ $lname = $_SESSION['lname'];
 
                     <!-- Start of Displaying tournaments -->
     
-    <?php
-
-$val1 = $_GET["value"];
-$val = mysqli_real_escape_string($conn,"Strathmore Chess");
-$sql="select * from `Tournament`;";
-$result = mysqli_query($conn,$sql);
-$resultCheck = mysqli_num_rows($result);
-?>
+        <?php
+    $sql="select * from `Tournament`;";
+    $result = mysqli_query($conn,$sql);
+    $resultCheck = mysqli_num_rows($result);
+    ?>
     <div class="wrap-input101">
         <label>Tournament:</label>
-            <select class="input101" aria-placeholder="Tournaments">
+            <select class="input101" aria-placeholder="Tournaments" name="Tournament">
             <option selected="selected">Choose one</option>
             <?php
-    foreach($result as $row2) { ?>
+        foreach($result as $row2) { ?>
       <option value="<?= $row2['name'] ?>"><?= $row2['name'] ?></option>
       <?php
-    } ?>
+        } ?>
     </select>
     </div>
 
-    <?php
-?>
+        <?php
+    ?>
 <!-- End of Displaying tournaments -->
 
                     <div class="wrap-input100 validate-input" data-validate="First Name required">
-                        <input class="input100" type="text" name="fname" placeholder="First Name">
+                        <input class="input100" type="text" name="fname" placeholder="First Name" value="<?php echo $fname?>">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -84,7 +105,7 @@ $resultCheck = mysqli_num_rows($result);
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Last Name required">
-                        <input class="input100" type="text" name="lname" placeholder="Last Name">
+                        <input class="input100" type="text" name="lname" placeholder="Last Name" value="<?php echo $lname?>">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -92,7 +113,7 @@ $resultCheck = mysqli_num_rows($result);
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="signup">
+                        <button class="login100-form-btn" name="register">
 							Register
 						</button>
                     </div>
@@ -104,6 +125,7 @@ $resultCheck = mysqli_num_rows($result);
 						</a>
                     </div>
                 </form>
+            <?php }?>
 
             </div>
         </div>
