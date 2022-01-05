@@ -8,6 +8,12 @@ error_reporting(0);
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
 
+if($fname == "admin"){
+    $name = 1;
+}else{
+    $name = 0;
+}
+
 ?>
 
 
@@ -43,7 +49,7 @@ $lname = $_SESSION['lname'];
 
             <!-- Image Logo -->
             <div class="logo">
-                <a href="index.html"><img src="images/resize.png" alt="Alternative"> Star<span>Tournament</span></a>
+                <a href="index.php"><img src="images/resize.png" alt="Alternative"> Star<span>Tournament</span></a>
             </div>
 
             <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
@@ -63,18 +69,30 @@ $lname = $_SESSION['lname'];
             </div>
     <?php }?>
 
-    <?php if(!empty($fname)){?>
+    <?php if(!empty($fname)  && $name == 1){?>
                 <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" >
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#details">Welcome <?php echo $fname . " " . $lname;?>!<span class="sr-only">(current)</span></a>
+                        <a class="nav-link page-scroll" href="admin.php">Welcome <?php echo $fname;?>!<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
 
                 <a class="btn-solid-reg" href=logoutLogic.php target="_self" rel="noopener noreferrer">Log Out</a>
             </div>
     <?php }?>
-            <!-- end of navbar-collapse -->
+        
+
+    <?php if(!empty($fname)  && $name == 0){?>
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault" >
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="account.php">Welcome <?php echo $fname . " " . $lname;?>!<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+
+                <a class="btn-solid-reg" href=logoutLogic.php target="_self" rel="noopener noreferrer">Log Out</a>
+            </div>
+    <?php }?>
         </div>
         <!-- end of container -->
     </nav>
@@ -120,7 +138,7 @@ $lname = $_SESSION['lname'];
     $result = mysqli_query($conn,$sql);
     $resultCheck = mysqli_num_rows($result);
 
-if ($resultCheck > 0) {
+    if ($resultCheck > 0) {
     while($row=mysqli_fetch_assoc($result)) {
 
 
@@ -179,7 +197,7 @@ if ($resultCheck > 0) {
                         <div class="media-body">Date: <strong><?php echo $tdate ?></strong></div>
                     </li>
                 </ul>
-                <a class="btn-solid-reg mfp-close page-scroll" href="#contact">Register</a>
+                <a class="btn-solid-reg mfp-close page-scroll" href="tournamentRegistration.php">Register</a>
             </div>
             <!-- end of col -->
         </div>
@@ -193,8 +211,7 @@ if ($resultCheck > 0) {
         
     }  
 }
-
-?>
+    ?>
     <!-- End of Displaying tournaments -->
 
     <!-- Footer -->

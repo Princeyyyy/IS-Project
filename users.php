@@ -3,10 +3,18 @@
 session_start();
 
 include "db.php";
-include "signupLogic.php";
+
 error_reporting(0);
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
+
+if($fname == "admin"){
+    $name = 1;
+}else{
+    $name = 0;
+}
+
+include "adminLogic.php";
 
 ?>
 
@@ -15,7 +23,7 @@ $lname = $_SESSION['lname'];
 <html lang="en">
 
 <head>
-    <title>Sign Up</title>
+    <title>Users</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -34,83 +42,42 @@ $lname = $_SESSION['lname'];
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/boom.css">
 </head>
 
 <body>
 
-    <div class="limiter">
+<div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <div class="login100-pic js-tilt" data-tilt>
+            <div class="login100-pic">
                     <img src="images/tournament.png" alt="img">
                 </div>
 
                 <?php if(empty($fname)){?>
                 <!-- Display signup screen -->
-                <form class="login100-form validate-form" method="POST" enctype="multipart/form-data">
+                <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
-						Member Sign Up
+						You're Logged Out!!
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="First Name required">
-                        <input class="input100" type="text" name="fname" placeholder="First Name">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Last Name required">
-                        <input class="input100" type="text" name="lname" placeholder="Last Name">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Phone number required">
-                        <input class="input100" type="text" name="phoneno" placeholder="Phone Number">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-phone" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" placeholder="Email">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" id="spassword" placeholder="Password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div>
-                        <input type="checkbox" onclick="myFunction()"> Show Password
-                    </div>
-
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="signup">
-							Sign Up
+                        <button class="login100-form-btn" name="update">
+                        Log In
 						</button>
                     </div>
+                </form>
+            <?php }?>
 
-                    <div class="text-center p-t-50">
-                        <a class="txt2" href="login.php">
-							Already have an account! Log In
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-                    </div>
+                <?php if(!empty($fname) && $name == 0){?>
+                <!-- Display signup screen -->
+                <form class="login100-form validate-form" method="POST">
+                    <span class="login100-form-title">
+						You do not have Admin Privilages!!
+					</span>
 
                     <div class="text-center">
-                        <a class="txt2" href="index.php">
+                        <a class="txt2" href="home.php">
 							Back
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
@@ -118,27 +85,52 @@ $lname = $_SESSION['lname'];
                 </form>
             <?php }?>
 
-            <?php if(!empty($fname)){?>
+            <?php if(!empty($fname) && $name == 1){?>
                 <!-- Display user is logged in -->
-                <form class="login100-form validate-form" method="POST">
-                <span class="login100-form-title">
-                     <?php echo $fname . " " . $lname?>!
-					</span>
-
+                <form class="login100-form validate-form">
+                    <!-- Start of Displaying tournaments -->
                     <span class="login100-form-title">
-						You're Logged In!!
+						Users
 					</span>
+    
+    <?php
 
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="return1">
-							Return to Home Page
-						</button>
-                    </div>
+$sql="select * from Users;";
+$result = mysqli_query($conn,$sql);
+$resultCheck = mysqli_num_rows($result);
 
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="logout1">
-							LogOut
-						</button>
+    if ($resultCheck > 0) {
+    while($row=mysqli_fetch_assoc($result)) {
+
+
+    $uid = $row["id"];
+    $ufname = $row["fname"];
+    $ulname = $row["lname"];
+    $uemail = $row["email"];
+    $uphone = $row["phoneno"];
+    
+
+    ?>
+    <div class="card">
+    <div class="card-body">
+        <div class="card-header"><strong>Name:</strong> <?php echo $ufname . " " . $ulname;?></div>
+        <div class="card-body"><strong>Email:</strong> <?php echo $uemail;?></div>
+        <div class="card-body"><strong>Phone No:</strong> <?php echo $uphone;?></div>
+    </div>
+    </div>
+
+    <?php
+    
+            }  
+        }
+    ?>
+<!-- End of Displaying tournaments -->
+
+                    <div class="text-center">
+                        <a class="txt2" href="admin.php">
+							Back
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
                     </div>
                 </form>
             <?php }?>
@@ -146,7 +138,6 @@ $lname = $_SESSION['lname'];
             </div>
         </div>
     </div>
-
 
 
 

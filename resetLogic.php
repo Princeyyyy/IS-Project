@@ -19,15 +19,15 @@ if($num == 1)
     $_SESSION['lname']= $row[2];
     $_SESSION['email']= $row[3];
     $_SESSION['password']= $row[4];
-    header("Location: reset1.php");
+    header("Location: reset.php");
 
 }
 else
 {
     echo "
         <script type=\"text/javascript\">".
-        "alert('Email $resetemail is not a valid email! Try again');".
-        "location.href = 'reset1.php'".
+        "alert('Email: $resetemail is not a valid email! Try again');".
+        "location.href = 'reset.php'".
         "</script>";
 }
 }

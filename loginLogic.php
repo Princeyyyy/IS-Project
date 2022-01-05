@@ -15,8 +15,13 @@ $row=mysqli_fetch_array($result);
 
 if($num == 1)
 {
+    $_SESSION['id']= $row[0];
     $_SESSION['fname']= $row[1];
     $_SESSION['lname']= $row[2];
+    $_SESSION['email']= $row[3];
+    $_SESSION['password']= $row[4];
+    $_SESSION['phone']= $row[5];
+    
     echo "
         <script type=\"text/javascript\">".
         "alert('Login Successful!');".
@@ -28,11 +33,24 @@ else
 {
     echo "
         <script type=\"text/javascript\">".
-        "alert('Invalid Email or Password! Try again');".
+        "alert('Invalid Email or Password! Try again!!');".
         "location.href = 'login.php'".
         "</script>";
 }
 }
 
+if(isset($_POST['return']))
+{
+header("Location: home.php");
+}
+
+if(isset($_POST['logout']))
+{
+    
+session_start();
+session_destroy();
+
+header('location: login.php');
+}
 
 ?>

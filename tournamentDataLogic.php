@@ -27,7 +27,7 @@ if(isset($_POST['tournament']))
         echo "
         <script type=\"text/javascript\">".
         "alert('Tournament Data Entry was Successful!');".
-        "location.href = 'home.php'".
+        "location.href = 'admin.php'".
         "</script>";
         $sql = "insert into Tournament(price, name, organizer, organizer_email, time, venue, date) values ('$tprice', '$tname','$torganizer','$torganizer_email','$ttime','$tvenue','$tdate')";
         mysqli_query($conn,$sql);

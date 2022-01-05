@@ -110,7 +110,7 @@ include "tournamentDataLogic.php";
                     </div>
 
                     <div class="text-center p-t-50">
-                        <a class="txt2" href="index.php">
+                        <a class="txt2" href="admin.php">
 							Back
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>

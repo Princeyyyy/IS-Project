@@ -3,22 +3,25 @@
 session_start();
 
 include "db.php";
-include "reset1Logic.php";
+
 error_reporting(0);
 $id = $_SESSION['id'];
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
-include "resetLogic2.php";
+$phone = $_SESSION['phone'];
+
+include "tournamentRegistrationLogic.php";
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Reset Password</title>
+    <title>Tournament Registration</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -35,7 +38,7 @@ include "resetLogic2.php";
     <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/main2.css">
     <!--===============================================================================================-->
 </head>
 
@@ -45,18 +48,64 @@ include "resetLogic2.php";
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
-                    <img src="images/tournament.png" alt="IMG">
+                    <img src="images/tournament.png" alt="img">
                 </div>
 
-                <?php if(empty($email)){?>
-                <!-- display nothing but login in button -->
+                <?php if(empty($fname)){?>
+                <!-- Display signup screen -->
                 <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
-						Search for your Email Account!!!
+						You're Logged Out!!
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="email" name="reset1email" placeholder="Email">
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="login2">
+							LogIn
+						</button>
+                    </div>
+                </form>
+            <?php }?>
+
+            <?php if(!empty($fname)){?>
+                <!-- Display Registration screen -->
+                <form class="login100-form validate-form" method="POST">
+                    <span class="login100-form-title">
+						Tournament Registration
+					</span>
+
+                    <!-- Start of Displaying tournaments -->
+    
+        <?php
+    $sql="select * from `Tournament`;";
+    $result = mysqli_query($conn,$sql);
+    $resultCheck = mysqli_num_rows($result);
+    ?>
+    <div class="wrap-input101">
+        <label>Tournament:</label>
+            <select class="input101" aria-placeholder="Tournaments" name="Tournament">
+            <option selected="selected">Choose one</option>
+            <?php
+        foreach($result as $row2) { ?>
+      <option value="<?= $row2['name'] ?>"><?= $row2['name'] ?></option>
+      <?php
+        } ?>
+    </select>
+    </div>
+
+        <?php
+    ?>
+<!-- End of Displaying tournaments -->
+
+                    <div class="wrap-input100 validate-input" data-validate="First Name required">
+                        <input class="input100" type="text" name="fname" placeholder="First Name" value="<?php echo $fname?>">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Last Name required">
+                        <input class="input100" type="text" name="lname" placeholder="Last Name" value="<?php echo $lname?>">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -64,13 +113,13 @@ include "resetLogic2.php";
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="check">
-							Check Email
+                        <button class="login100-form-btn" name="register">
+							Register
 						</button>
                     </div>
 
-                    <div class="text-center p-t-50">
-                        <a class="txt2" href="login.php">
+                    <div class="text-center">
+                        <a class="txt2" href="home.php">
 							Back
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
@@ -78,43 +127,9 @@ include "resetLogic2.php";
                 </form>
             <?php }?>
 
-            <?php if(!empty($email)){?>
-                <!-- display nothing but login in button -->
-                <form class="login100-form validate-form" method="POST">
-                    <span class="login100-form-title">
-						Reset Password for <?php echo $fname . " " . $lname?>!
-					</span>
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="resetpassword" id="spassword" placeholder="Password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div>
-                        <input type="checkbox" onclick="myFunction()"> Show Password
-                    </div>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="reset">
-							Reset Password
-						</button>
-                    </div>
-
-                    <div class="text-center p-t-50">
-                        <a class="txt2" href="login.php">
-							Back
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-                    </div>
-                </form>
-            <?php }?>
             </div>
         </div>
     </div>
-
 
     <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
