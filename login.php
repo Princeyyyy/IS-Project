@@ -1,3 +1,15 @@
+<?php
+
+session_start();
+
+include "db.php";
+include "loginLogic.php";
+error_reporting(0);
+$fname = $_SESSION['fname'];
+$lname = $_SESSION['lname'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,21 +44,23 @@
                     <img src="images/tournament.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form" action="loginLogic.php" method="POST">
+                <?php if(empty($fname)){?>
+                <!-- Display login page -->
+                <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
 						Member Login
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="Username required">
-                        <input class="input100" type="text" name="logusername" placeholder="Username">
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="logemail" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
+							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="logpassword" id="lpasssword" placeholder="Password">
+                        <input class="input100" type="password" name="logpassword" id="spassword" placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -54,7 +68,7 @@
                     </div>
 
                     <div>
-                        <input id="checkbox" type="checkbox" onclick="myFunction()"> Show Password
+                        <input type="checkbox" onclick="myFunction()"> Show Password
                     </div>
 
                     <div class="container-login100-form-btn">
@@ -65,10 +79,10 @@
 
                     <div class="text-center p-t-12">
                         <span class="txt1">
-							Forgot
+							Forgot Password?
 						</span>
-                        <a class="txt2" href="#">
-							Email / Password?
+                        <a class="txt2" href="reset.php">
+                            Reset Password!!
 						</a>
                     </div>
 
@@ -86,6 +100,33 @@
 						</a>
                     </div>
                 </form>
+            <?php }?>
+
+            <?php if(!empty($fname)){?>
+                <!-- Display user is logged in -->
+                <form class="login100-form validate-form" method="POST">
+                <span class="login100-form-title">
+                     <?php echo $fname . " " . $lname?>!
+					</span>
+
+                    <span class="login100-form-title">
+						You're Logged In!!
+					</span>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="return">
+							Return to Home Page
+						</button>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="logout">
+							LogOut
+						</button>
+                    </div>
+                </form>
+            <?php }?>
+
             </div>
         </div>
     </div>
@@ -109,7 +150,7 @@
     </script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
-    <script src="js/log.js"></script>
+    <script src="js/sign.js"></script>
 
 </body>
 

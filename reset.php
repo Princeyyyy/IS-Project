@@ -3,19 +3,22 @@
 session_start();
 
 include "db.php";
-include "signupLogic.php";
+include "resetLogic.php";
 error_reporting(0);
-$fname = $_SESSION['fname'];
-$lname = $_SESSION['lname'];
+$id = $_SESSION['id'];
+$fname1 = $_SESSION['fname'];
+$lname1 = $_SESSION['lname'];
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
+include "resetLogic1.php";
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Sign Up</title>
+    <title>Reset Password</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -42,53 +45,51 @@ $lname = $_SESSION['lname'];
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
-                    <img src="images/tournament.png" alt="img">
+                    <img src="images/tournament.png" alt="IMG">
                 </div>
 
-                <?php if(empty($fname)){?>
-                <!-- Display signup screen -->
-                <form class="login100-form validate-form" method="POST" enctype="multipart/form-data">
+                <?php if(empty($email)){?>
+                <!-- Display checking email -->
+                <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
-						Member Sign Up
+						Search for your Email Account!!!
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="First Name required">
-                        <input class="input100" type="text" name="fname" placeholder="First Name">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Last Name required">
-                        <input class="input100" type="text" name="lname" placeholder="Last Name">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Phone number required">
-                        <input class="input100" type="text" name="phoneno" placeholder="Phone Number">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-phone" aria-hidden="true"></i>
-						</span>
-                    </div>
-
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" placeholder="Email">
+                        <input class="input100" type="email" name="reset1email" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
                     </div>
 
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="check">
+							Check Email
+						</button>
+                    </div>
+
+                    <div class="text-center p-t-50">
+                        <a class="txt2" href="logoutLogic1.php">
+							Back
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+                    </div>
+                </form>
+            <?php }?>
+
+            <?php if(!empty($email)){?>
+                <!-- Display password reset -->
+                <form class="login100-form validate-form" method="POST">
+                    <span class="login100-form-title">
+						Reset Password for <?php echo $fname1 . " " . $lname1?>!
+					</span>
+
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" id="spassword" placeholder="Password">
+                        <input class="input100" type="password" name="resetpassword" id="spassword" placeholder="Password">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
+							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
                     </div>
 
@@ -97,57 +98,22 @@ $lname = $_SESSION['lname'];
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="signup">
-							Sign Up
+                        <button class="login100-form-btn" name="reset">
+							Reset Password
 						</button>
                     </div>
 
                     <div class="text-center p-t-50">
-                        <a class="txt2" href="login.php">
-							Already have an account! Log In
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-                    </div>
-
-                    <div class="text-center">
-                        <a class="txt2" href="index.php">
+                        <a class="txt2" href="logoutLogic1.php">
 							Back
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
                     </div>
                 </form>
             <?php }?>
-
-            <?php if(!empty($fname)){?>
-                <!-- Display user is logged in -->
-                <form class="login100-form validate-form" method="POST">
-                <span class="login100-form-title">
-                     <?php echo $fname . " " . $lname?>!
-					</span>
-
-                    <span class="login100-form-title">
-						You're Logged In!!
-					</span>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="return1">
-							Return to Home Page
-						</button>
-                    </div>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="logout1">
-							LogOut
-						</button>
-                    </div>
-                </form>
-            <?php }?>
-
             </div>
         </div>
     </div>
-
-
 
 
     <!--===============================================================================================-->

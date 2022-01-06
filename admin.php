@@ -3,10 +3,18 @@
 session_start();
 
 include "db.php";
-include "signupLogic.php";
+
 error_reporting(0);
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
+
+if($fname == "admin"){
+    $name = 1;
+}else{
+    $name = 0;
+}
+
+include "adminLogic.php";
 
 ?>
 
@@ -15,7 +23,7 @@ $lname = $_SESSION['lname'];
 <html lang="en">
 
 <head>
-    <title>Sign Up</title>
+    <title>Admin Portal</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -38,7 +46,7 @@ $lname = $_SESSION['lname'];
 
 <body>
 
-    <div class="limiter">
+<div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-pic js-tilt" data-tilt>
@@ -47,70 +55,28 @@ $lname = $_SESSION['lname'];
 
                 <?php if(empty($fname)){?>
                 <!-- Display signup screen -->
-                <form class="login100-form validate-form" method="POST" enctype="multipart/form-data">
+                <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
-						Member Sign Up
+						You're Logged Out!!
 					</span>
 
-                    <div class="wrap-input100 validate-input" data-validate="First Name required">
-                        <input class="input100" type="text" name="fname" placeholder="First Name">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Last Name required">
-                        <input class="input100" type="text" name="lname" placeholder="Last Name">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-user" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Phone number required">
-                        <input class="input100" type="text" name="phoneno" placeholder="Phone Number">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-phone" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" placeholder="Email">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" id="spassword" placeholder="Password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div>
-                        <input type="checkbox" onclick="myFunction()"> Show Password
-                    </div>
-
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="signup">
-							Sign Up
+                        <button class="login100-form-btn" name="update">
+                        Log In
 						</button>
                     </div>
+                </form>
+            <?php }?>
 
-                    <div class="text-center p-t-50">
-                        <a class="txt2" href="login.php">
-							Already have an account! Log In
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-                    </div>
+                <?php if(!empty($fname) && $name == 0){?>
+                <!-- Display signup screen -->
+                <form class="login100-form validate-form" method="POST">
+                    <span class="login100-form-title">
+						You do not have Admin Privilages!!
+					</span>
 
                     <div class="text-center">
-                        <a class="txt2" href="index.php">
+                        <a class="txt2" href="home.php">
 							Back
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
@@ -118,27 +84,36 @@ $lname = $_SESSION['lname'];
                 </form>
             <?php }?>
 
-            <?php if(!empty($fname)){?>
+            <?php if(!empty($fname) && $name == 1){?>
                 <!-- Display user is logged in -->
-                <form class="login100-form validate-form" method="POST">
-                <span class="login100-form-title">
-                     <?php echo $fname . " " . $lname?>!
-					</span>
-
+                <form class="login100-form validate-form" method="POST" enctype="multipart/form-data">
                     <span class="login100-form-title">
-						You're Logged In!!
+						User Account
 					</span>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="return1">
-							Return to Home Page
+                        <button class="login100-form-btn" name="account">
+							View Account
 						</button>
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="logout1">
-							LogOut
+                        <button class="login100-form-btn" name="viewusers">
+                        View Users
 						</button>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="addtournament">
+                        Add Tournament
+						</button>
+                    </div>
+
+                    <div class="text-center">
+                        <a class="txt2" href="home.php">
+							Back
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
                     </div>
                 </form>
             <?php }?>

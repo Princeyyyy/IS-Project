@@ -3,10 +3,16 @@
 session_start();
 
 include "db.php";
-include "signupLogic.php";
+
 error_reporting(0);
+$id = $_SESSION['id'];
 $fname = $_SESSION['fname'];
 $lname = $_SESSION['lname'];
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
+$phone = $_SESSION['phone'];
+
+include "tournamentRegistrationLogic.php";
 
 ?>
 
@@ -15,7 +21,7 @@ $lname = $_SESSION['lname'];
 <html lang="en">
 
 <head>
-    <title>Sign Up</title>
+    <title>Tournament Registration</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -32,7 +38,7 @@ $lname = $_SESSION['lname'];
     <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/main2.css">
     <!--===============================================================================================-->
 </head>
 
@@ -47,13 +53,51 @@ $lname = $_SESSION['lname'];
 
                 <?php if(empty($fname)){?>
                 <!-- Display signup screen -->
-                <form class="login100-form validate-form" method="POST" enctype="multipart/form-data">
+                <form class="login100-form validate-form" method="POST">
                     <span class="login100-form-title">
-						Member Sign Up
+						You're Logged Out!!
 					</span>
 
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" name="login2">
+							LogIn
+						</button>
+                    </div>
+                </form>
+            <?php }?>
+
+            <?php if(!empty($fname)){?>
+                <!-- Display Registration screen -->
+                <form class="login100-form validate-form" method="POST">
+                    <span class="login100-form-title">
+						Tournament Registration
+					</span>
+
+                    <!-- Start of Displaying tournaments -->
+    
+        <?php
+    $sql="select * from `Tournament`;";
+    $result = mysqli_query($conn,$sql);
+    $resultCheck = mysqli_num_rows($result);
+    ?>
+    <div class="wrap-input101">
+        <label>Tournament:</label>
+            <select class="input101" aria-placeholder="Tournaments" name="Tournament">
+            <option selected="selected">Choose one</option>
+            <?php
+        foreach($result as $row2) { ?>
+      <option value="<?= $row2['name'] ?>"><?= $row2['name'] ?></option>
+      <?php
+        } ?>
+    </select>
+    </div>
+
+        <?php
+    ?>
+<!-- End of Displaying tournaments -->
+
                     <div class="wrap-input100 validate-input" data-validate="First Name required">
-                        <input class="input100" type="text" name="fname" placeholder="First Name">
+                        <input class="input100" type="text" name="fname" placeholder="First Name" value="<?php echo $fname?>">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
@@ -61,56 +105,21 @@ $lname = $_SESSION['lname'];
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Last Name required">
-                        <input class="input100" type="text" name="lname" placeholder="Last Name">
+                        <input class="input100" type="text" name="lname" placeholder="Last Name" value="<?php echo $lname?>">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa fa-user" aria-hidden="true"></i>
 						</span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Phone number required">
-                        <input class="input100" type="text" name="phoneno" placeholder="Phone Number">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-phone" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email" placeholder="Email">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password" id="spassword" placeholder="Password">
-                        <span class="focus-input100"></span>
-                        <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-                    </div>
-
-                    <div>
-                        <input type="checkbox" onclick="myFunction()"> Show Password
-                    </div>
-
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="signup">
-							Sign Up
+                        <button class="login100-form-btn" name="register">
+							Register
 						</button>
                     </div>
 
-                    <div class="text-center p-t-50">
-                        <a class="txt2" href="login.php">
-							Already have an account! Log In
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-                    </div>
-
                     <div class="text-center">
-                        <a class="txt2" href="index.php">
+                        <a class="txt2" href="home.php">
 							Back
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
@@ -118,37 +127,9 @@ $lname = $_SESSION['lname'];
                 </form>
             <?php }?>
 
-            <?php if(!empty($fname)){?>
-                <!-- Display user is logged in -->
-                <form class="login100-form validate-form" method="POST">
-                <span class="login100-form-title">
-                     <?php echo $fname . " " . $lname?>!
-					</span>
-
-                    <span class="login100-form-title">
-						You're Logged In!!
-					</span>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="return1">
-							Return to Home Page
-						</button>
-                    </div>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" name="logout1">
-							LogOut
-						</button>
-                    </div>
-                </form>
-            <?php }?>
-
             </div>
         </div>
     </div>
-
-
-
 
     <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>

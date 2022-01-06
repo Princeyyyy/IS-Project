@@ -1,33 +1,56 @@
 <?php
 
-session_start();
+if(isset($_POST['login']))
+{
 
-$servername = 'localhost';
-$username = 'root';
-$password = '';
-
-$conn = mysqli_connect($servername, $username, $password, 'startournament');
-
-$logusername = $_POST['logusername'];
+$logemail = $_POST['logemail'];
 $logpassword = $_POST['logpassword'];
+    
+$sql="select * from Users where email='$logemail' && password='$logpassword'";
+$db = mysqli_select_db($conn,'Users');
 
-$sql="select * from users where username='$logusername' && password='$logpassword'";
 $result = mysqli_query($conn,$sql);
 $num = mysqli_num_rows($result);
+$row=mysqli_fetch_array($result);
 
 if($num == 1)
 {
-    $_SESSION['name']= $_POST['logusername'];
-    header("Location: home.php");
+    $_SESSION['id']= $row[0];
+    $_SESSION['fname']= $row[1];
+    $_SESSION['lname']= $row[2];
+    $_SESSION['email']= $row[3];
+    $_SESSION['password']= $row[4];
+    $_SESSION['phone']= $row[5];
+    
+    echo "
+        <script type=\"text/javascript\">".
+        "alert('Login Successful!');".
+        "location.href = 'home.php'".
+        "</script>";
+
 }
 else
 {
     echo "
         <script type=\"text/javascript\">".
-        "alert('Invalid Username or Password! Try again');".
+        "alert('Invalid Email or Password! Try again!!');".
         "location.href = 'login.php'".
         "</script>";
 }
+}
 
+if(isset($_POST['return']))
+{
+header("Location: home.php");
+}
+
+if(isset($_POST['logout']))
+{
+    
+session_start();
+session_destroy();
+
+header('location: login.php');
+}
 
 ?>
